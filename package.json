@@ -1,0 +1,45 @@
+{
+  "name": "toolkb-mcp",
+  "version": "0.1.0",
+  "description": "Turn any link into clean, AI-ready Markdown: YouTube transcripts, web articles, App Store reviews. Local MCP server + CLI for Claude, Codex, Cursor. No API key, no account.",
+  "type": "module",
+  "bin": {
+    "toolkb-mcp": "src/server.js",
+    "toolkb": "src/cli.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "codex",
+    "cursor",
+    "youtube-transcript",
+    "markdown",
+    "web-scraping",
+    "app-store-reviews"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jack-reson8/toolkb-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@mozilla/readability": "^0.6.0",
+    "linkedom": "^0.18.13",
+    "turndown": "^7.2.4",
+    "undici": "^7.30.1",
+    "zod": "^3.25.76"
+  },
+  "scripts": {
+    "test": "node test/mcp-test.mjs"
+  }
+}
