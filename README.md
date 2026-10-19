@@ -6,6 +6,7 @@ Local, free, open source. No API key, no account, nothing sent to a third-party 
 | Tool | What you get |
 |---|---|
 | `youtube_transcript` | Full transcript of a YouTube video (watch, youtu.be, shorts, live) with title, channel, duration and clickable `[mm:ss]` timestamps. Uploaded or auto-generated captions, any caption language. |
+| `youtube_playlist` | Every video of a playlist or channel (`/@handle`) with titles, lengths and links – or, with `transcripts: true`, their transcripts in one Markdown document: an instant knowledge base. Sized to fit Claude Code's tool output limit. |
 | `webpage_to_markdown` | The main content of an article, blog post or docs page as Markdown – no menus, ads or scripts. Absolute links and images. |
 | `app_store_reviews` | Up to 500 recent App Store reviews of any iOS/macOS app with a rating histogram – ready for "what do users hate about this app?" |
 
@@ -38,6 +39,8 @@ Requires Node.js 18+. Behind a proxy? `HTTPS_PROXY` / `HTTP_PROXY` / `NO_PROXY` 
 Ask your assistant things like:
 
 - "Get the transcript of https://youtu.be/zjkBMFhNj_g and turn it into study notes with timestamps."
+- "Get the transcripts of the first 5 videos in this playlist and build me a study guide."
+- "List every video on @AndrejKarpathy and tell me which ones cover tokenization."
 - "Read https://www.paulgraham.com/greatwork.html and summarise the 10 key ideas."
 - "Pull the last 300 one- and two-star reviews of app 1232780281 and group the complaints by theme with counts."
 
@@ -47,6 +50,7 @@ The same tools work from a terminal:
 
 ```bash
 npx -y -p github:jack-reson8/toolkb-mcp toolkb yt https://youtu.be/jNQXAC9IVRw
+npx -y -p github:jack-reson8/toolkb-mcp toolkb playlist https://www.youtube.com/@AndrejKarpathy --transcripts 5
 npx -y -p github:jack-reson8/toolkb-mcp toolkb web https://example.com/article
 npx -y -p github:jack-reson8/toolkb-mcp toolkb reviews 1232780281 --pages 5 --max 2
 ```

@@ -1,6 +1,6 @@
 {
   "name": "toolkb-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Turn any link into clean, AI-ready Markdown: YouTube transcripts, web articles, App Store reviews. Local MCP server + CLI for Claude, Codex, Cursor. No API key, no account.",
   "type": "module",
   "bin": {

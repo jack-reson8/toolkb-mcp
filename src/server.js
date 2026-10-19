@@ -7,8 +7,9 @@ import "./net.js";
 import { getTranscript, transcriptMarkdown } from "./youtube.js";
 import { pageToMarkdown } from "./web.js";
 import { getReviews, reviewsMarkdown } from "./appstore.js";
+import { getPlaylist, playlistMarkdown, playlistTranscripts } from "./playlist.js";
 
-const server = new McpServer({ name: "toolkb", version: "0.1.0" });
+const server = new McpServer({ name: "toolkb", version: "0.2.0" });
 const ok = (text) => ({ content: [{ type: "text", text }] });
 const fail = (e) => ({ isError: true, content: [{ type: "text", text: "Error: " + (e && e.message ? e.message : String(e)) }] });
 
@@ -17,6 +18,12 @@ server.registerTool("youtube_transcript", {
   description: "Get the transcript of a YouTube video as Markdown with title, channel, duration and clickable [mm:ss] timestamps. Uses the video's uploaded or auto-generated captions. To get it in another language, pick a caption language with `lang` or ask the assistant to translate the result.",
   inputSchema: { url: z.string().describe("YouTube URL (watch, youtu.be, shorts, live) or 11-character video ID"), lang: z.string().optional().describe("Preferred caption language code, e.g. en, zh-Hans, ja"), timestamps: z.boolean().optional().describe("Include [mm:ss] timestamps (default true)") },
 }, async ({ url, lang, timestamps }) => { try { return ok(transcriptMarkdown(await getTranscript(url, { lang }), { timestamps: timestamps !== false })); } catch (e) { return fail(e); } });
+
+server.registerTool("youtube_playlist", {
+  title: "YouTube playlist or channel",
+  description: "List the videos of a YouTube playlist or channel (titles, lengths, links). With transcripts=true, return the transcripts of the first N videos in one Markdown document – a ready-made knowledge base for summaries, notes or Q&A.",
+  inputSchema: { url: z.string().describe("Playlist URL or ID (PL…), or channel URL (/@handle, /channel/UC…) for its uploads"), limit: z.number().int().min(1).max(500).optional().describe("Max videos to list (default 50)"), transcripts: z.boolean().optional().describe("Also fetch transcripts (default false)"), max_transcripts: z.number().int().min(1).max(25).optional().describe("How many videos to transcribe when transcripts=true (default 10)"), timestamps: z.boolean().optional().describe("Timestamps in transcripts (default false here, to save space)"), max_chars: z.number().int().positive().optional().describe("Stop adding transcripts after this many characters (default 90000, fits Claude Code's tool output limit)") },
+}, async ({ url, limit, transcripts, max_transcripts, timestamps, max_chars }) => { try { const p = await getPlaylist(url, { limit: limit || 50 }); return ok(transcripts ? await playlistTranscripts(p, { max: max_transcripts || 10, timestamps: timestamps === true, maxChars: max_chars || 90000 }) : playlistMarkdown(p)); } catch (e) { return fail(e); } });
 
 server.registerTool("webpage_to_markdown", {
   title: "Web page to Markdown",

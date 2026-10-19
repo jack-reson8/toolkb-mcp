@@ -10,6 +10,9 @@ const cases = [
   ["youtube_transcript", { url: "https://www.youtube.com/watch?v=zjkBMFhNj_g", timestamps: false }, (t) => t.length > 40000 && !t.includes("&t=")],
   ["webpage_to_markdown", { url: "https://www.paulgraham.com/greatwork.html", max_chars: 5000 }, (t) => t.includes("# How to Do Great Work") && t.includes("[truncated]")],
   ["app_store_reviews", { app: "1232780281", pages: 1, min_rating: 5 }, (t) => t.includes("Notion") && !/### ★★★★☆/.test(t)],
+  ["youtube_playlist", { url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" }, (t) => t.includes("Zero to Hero") && (t.match(/^\| \d+ \|/gm) || []).length === 10],
+  ["youtube_playlist", { url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", transcripts: true, max_transcripts: 4 }, (t) => t.length < 100000 && (t.match(/^## /gm) || []).length >= 1 && t.includes("Not included to stay within the size limit")],
+  ["youtube_playlist", { url: "https://example.com/nope" }, (t, r) => r.isError],
   ["youtube_transcript", { url: "not a url" }, (t, r) => r.isError && t.includes("Not a YouTube")],
   ["webpage_to_markdown", { url: "ftp://x" }, (t, r) => r.isError],
 ];
