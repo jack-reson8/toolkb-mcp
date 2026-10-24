@@ -1,5 +1,7 @@
 # toolkb-mcp
 
+<p align="center"><img src="docs/share.png" alt="toolkb-mcp: raw HTML vs clean Markdown" width="100%"></p>
+
 **Turn any link into clean, AI-ready Markdown – right inside Claude Code, Codex, Cursor or any MCP client.**
 Local, free, open source. No API key, no account, nothing sent to a third-party service.
 
