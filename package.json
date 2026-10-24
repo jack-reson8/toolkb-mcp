@@ -37,7 +37,7 @@
     "linkedom": "^0.18.13",
     "turndown": "^7.2.4",
     "undici": "^7.30.1",
-    "zod": "^3.25.76"
+    "zod": "^4.6.7"
   },
   "scripts": {
     "test": "node test/mcp-test.mjs"
