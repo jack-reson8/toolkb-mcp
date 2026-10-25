@@ -1,6 +1,7 @@
 # toolkb-mcp
 
 <p align="center"><img src="docs/share.png" alt="toolkb-mcp: raw HTML vs clean Markdown" width="100%"></p>
+<p align="center"><img src="docs/proof.png" alt="Raw HTML vs toolkb Markdown: 8x fewer tokens" width="100%"></p>
 <p align="center"><sub>Part of <a href="https://github.com/jack-reson8/copy-that"><b>Copy That</b></a> · install the whole set in one line</sub></p>
 
 **Turn any link into clean, AI-ready Markdown – right inside Claude Code, Codex, Cursor or any MCP client.**
