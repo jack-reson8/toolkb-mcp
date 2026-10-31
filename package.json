@@ -32,7 +32,7 @@
     "url": "https://github.com/jack-reson8/toolkb-mcp.git"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@mozilla/readability": "^0.6.0",
     "linkedom": "^0.18.13",
     "turndown": "^7.2.4",
